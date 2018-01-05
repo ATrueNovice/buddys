@@ -12,5 +12,7 @@ urlpatterns = [
     url(r'^dispensary/sign-out', auth_views.logout,
     {'next_page': '/'},
     name = 'dispensary-sign-out'),
+    url(r'^dispensary/signup', views.dispensary_sign_up,
+    name = 'dispensary-signup'),
     url(r'^dispensary/$', views.dispensary_home, name = 'dispensary-home')
 ]

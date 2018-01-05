@@ -7,4 +7,7 @@ def home(request):
 
 @login_required(login_url='/dispensary/sign-in/')
 def dispensary_home(request):
-    return render(request, 'dispensary/home.html')
+    return render(request, 'dispensary/home.html', {})
+
+def dispensary_sign_up(request):
+    return render(request, 'dispensary/signup.html', {})
