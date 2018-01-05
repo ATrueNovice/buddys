@@ -12,6 +12,11 @@
   </script>
   </head>
   <body>
-    Dispensary Sign Up
+<form method="POST">
+  {% csrf_token %}
+  {{ user_form }}
+  {{ dispensary_form }}
+  <button type="submit">SignUp</button>
+</form>
   </body>
 </html>
