@@ -1,0 +1,18 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Home Page</title>
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  </script>
+  </head>
+  <body>
+    Dispensary Page
+  <a href="{% url 'dispensary-sign-out' %}">Log out</a>
+  </body>
+</html>
