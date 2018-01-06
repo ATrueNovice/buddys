@@ -1,1 +1,1 @@
-web: gunicorn buddy.wsgi --log-file -
+web: gunicorn buddys.wsgi --log-file -
