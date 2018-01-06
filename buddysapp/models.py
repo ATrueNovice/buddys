@@ -9,5 +9,5 @@ class Dispensary(models.Model):
     logo = models.ImageField(upload_to='dispensary_logo/', blank=False)
 
 
-    #def __str__(self):
-    #    return self.name
+    def __str__(self):
+        return self.name
