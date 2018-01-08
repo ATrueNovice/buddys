@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from buddysapp.forms import UserForm, DispensaryForm, UserFormForEdit
+from buddysapp.forms import UserForm, DispensaryForm, UserFormForEdit, ProductsForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 
@@ -39,6 +39,28 @@ def dispensary_account(request):
 @login_required(login_url='/dispensary/sign-in/')
 def dispensary_products(request):
     return render(request, 'dispensary/products.html', {})
+
+#
+@login_required(login_url='/dispensary/sign-in/')
+def dispensary_add_products(request):
+    form = ProductsForm()
+
+# Once user sends data within the data, FILES updates the data. If the form is is_valid
+# create it in memory then assign it to the dispensary. Products.user.Dispensary assigns the products to each dispensary
+    if request.method == "POST":
+        form = ProductsForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            products = form.save(commit=False)
+            products.dispensary = request.user.dispensary
+            products.save()
+            return redirect(dispensary_products)
+
+            # Passing the form to the add products page from the second line
+    return render(request, 'dispensary/add-products.html', {
+        "form": form
+    })
+
 
 @login_required(login_url='/dispensary/sign-in/')
 def dispensary_orders(request):

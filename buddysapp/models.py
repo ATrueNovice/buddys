@@ -29,3 +29,17 @@ class Driver(models.Model):
 
     def __str__(self):
         return self.user.get_full_name()
+
+    # Add Tags for usage in this space
+        #Optional Checkbox with the size and price variants
+
+class Products(models.Model):
+    dispensary = models.ForeignKey(Dispensary)
+    name = models.CharField(max_length=500)
+    short_description = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='product_images/', blank=True)
+    sizes = models.CharField(max_length=100, default='Size')
+    price = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name

@@ -23,6 +23,7 @@ urlpatterns = [
 
     url(r'^dispensary/account/$', views.dispensary_account, name = 'dispensary-account'),
     url(r'^dispensary/products/$', views.dispensary_products, name = 'dispensary-products'),
+    url(r'^dispensary/products/add/$', views.dispensary_add_products, name = 'dispensary-add-products'),
     url(r'^dispensary/orders/$', views.dispensary_orders, name = 'dispensary-orders'),
     url(r'^dispensary/reports/$', views.dispensary_reports, name = 'dispensary-reports'),
 
