@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from buddysapp.forms import UserForm, DispensaryForm
+
+from buddysapp.forms import UserForm, DispensaryForm, UserFormForEdit
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 
@@ -8,13 +9,32 @@ from django.contrib.auth.models import User
 def home(request):
     return redirect(dispensary_home)
 
-@login_required(login_url='/dispensary/sign-in/')
+@login_required(login_url= '/dispensary/sign-in/')
 def dispensary_home(request):
-    return render(request, 'dispensary/account.html')
+    return redirect(dispensary_orders)
 
-@login_required(login_url='/dispensary/sign-in/')
+# Account Info
+
+@login_required(login_url= '/dispensary/sign-in/')
 def dispensary_account(request):
-    return render(request, 'dispensary/account.html', {})
+    user_form = UserFormForEdit(instance = request.user)
+    dispensary_form = DispensaryForm(instance = request.user.dispensary)
+
+    if request.method == "POST":
+        user_form = UserFormForEdit(request.POST,instance=request.user)
+        dispensary_form = DispensaryForm(request.POST, request.FILES, instance=request.user.dispensary)
+
+        if user_form.is_valid() and dispensary_form.is_valid():
+            user_form.save()
+            dispensary_form.save()
+
+            if request.user.logo:
+                dispensary_form.fields['logo'].required = False
+
+    return render(request, 'dispensary/account.html', {
+        "user_form": user_form,
+        "dispensary_form": dispensary_form
+    })
 
 @login_required(login_url='/dispensary/sign-in/')
 def dispensary_products(request):
@@ -44,7 +64,7 @@ def dispensary_sign_up(request):
 
             login(request, authenticate(
             username = user_form.cleaned_data["username"],
-            password = user_form.cleaned_data["password"]
+            password = user_form.cleaned_data["password"],
             ))
 
             return redirect(dispensary_home)

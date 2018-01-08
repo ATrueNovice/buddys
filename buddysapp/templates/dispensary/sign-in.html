@@ -1,12 +1,16 @@
 {% extends 'base_signup.html' %}
+{% load bootstrap3 %}
 
-{% block heading %}Buddies! - Sign In{% endblock %}
+{% block title %}Sign In!{% endblock %}
+{% block heading %}Buddies! Delivery Service{% endblock %}
 
 {% block content %}
     <form class="POST">
       {% csrf_token %}
-      {{ form }}
+      {% bootstrap_form form %}
       <button type="submit" class="btn btn-pink pull-right">Log In</button>
     </form>
+    <a href="{% url 'dispensary-signup' %}">Sign Up And Expand Your Business And Reach All Of New Jersey!</a>
+
 
 {% endblock %}

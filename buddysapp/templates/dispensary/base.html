@@ -3,15 +3,32 @@
 {% block title %} Dispensary {% endblock %}
 
 {% block sidebar %}
-  Dispensary, Hey! {{ request.user }}
-  <hr/>
+  <div class="text-center">
+    <img class=""="img-circle" src="{{ MEDIA_URL }}{{ request.user.dispensary.logo }}" width="70", height="70" />
 
-  <a href="{% url 'dispensary-account' %}">Account</a>
-  -
-  <a href="{% url 'dispensary-products' %}">Products</a>
-  -
-  <a href="{% url 'dispensary-orders' %}">Orders</a>
-  -
-  <a href="{% url 'dispensary-reports' %}">Reports</a>
+    <br/>
+    <br/>
+    <h4>Hi, {{ request.user.get_full_name }}</h4>
+    <h5>{{ request.user.dispensary.name }}</h5>
+  </div>
+
+<!--Divides the group into managable parts under the sidebar header  -->
+  <div class="list-group">
+    <span class="text-uppercase">Dashboard</span>
+
+    <a href="{% url 'dispensary-products' %}" class="list-group-item">Products</a>
+    <a href="{% url 'dispensary-orders' %}" class="list-group-item">Orders</a>
+    <a href="{% url 'dispensary-reports' %}" class="list-group-item">Reports</a>
+
+    <span class="text-uppercase">Profile</span>
+    <a href="{% url 'dispensary-account' %}" class="list-group-item">Account</a>
+  </div>
+
+  <div class="text-center">
+   <a href="{% url 'dispensary-sign-out' %}?next={{ request.path }}" class="btn btn-pink">Logout</a>
+
+    </div>
+
+
 
   {% endblock %}

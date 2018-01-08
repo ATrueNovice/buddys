@@ -1,13 +1,15 @@
 {% extends 'base_signup.html' %}
+{% load bootstrap3 %}
 
+{% block title %}SignUp {% endblock %}
 {% block heading %}Buddies! - Sign Up{% endblock %}
 
 {% block content %}
 <form method="POST" enctype="multipart/form-data">
   {% csrf_token %}
-  {{ user_form }}
-  {{ dispensary_form }}
+  {% bootstrap_form user_form %}
+  {% bootstrap_form dispensary_form %}
   <button type="submit" class="btn btn-pink pull-right">SignUp</button>
 </form>
-
+<a href="{% url 'dispensary-sign-in' %}">Already Have An Account? Sign In Here!</a>
 {% endblock %}
