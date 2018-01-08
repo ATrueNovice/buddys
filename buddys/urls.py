@@ -12,7 +12,7 @@ urlpatterns = [
 
     #Dispensaries
     url(r'^dispensary/sign-in/$', auth_views.login,
-    {'template_name': 'dispensary/sign-in.html'},
+    { 'template_name': 'dispensary/sign-in.html'},
     name = 'dispensary-sign-in'),
     url(r'^dispensary/sign-out', auth_views.logout,
     {'next_page': '/'},
