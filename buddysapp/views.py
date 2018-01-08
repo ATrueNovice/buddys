@@ -10,7 +10,23 @@ def home(request):
 
 @login_required(login_url='/dispensary/sign-in/')
 def dispensary_home(request):
-    return render(request, 'dispensary/home.html')
+    return render(request, 'dispensary/account.html')
+
+@login_required(login_url='/dispensary/sign-in/')
+def dispensary_account(request):
+    return render(request, 'dispensary/account.html', {})
+
+@login_required(login_url='/dispensary/sign-in/')
+def dispensary_products(request):
+    return render(request, 'dispensary/products.html', {})
+
+@login_required(login_url='/dispensary/sign-in/')
+def dispensary_orders(request):
+    return render(request, 'dispensary/orders.html', {})
+
+@login_required(login_url='/dispensary/sign-in/')
+def dispensary_reports(request):
+    return render(request, 'dispensary/reports.html', {})
 
 def dispensary_sign_up(request):
     user_form = UserForm()

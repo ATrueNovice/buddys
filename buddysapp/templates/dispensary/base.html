@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Dispensary {% endblock %}
+
+{% block sidebar %}
+  Dispensary, Hey! {{ request.user }}
+  <hr/>
+
+  <a href="{% url 'dispensary-account' %}">Account</a>
+  -
+  <a href="{% url 'dispensary-products' %}">Products</a>
+  -
+  <a href="{% url 'dispensary-orders' %}">Orders</a>
+  -
+  <a href="{% url 'dispensary-reports' %}">Reports</a>
+
+  {% endblock %}

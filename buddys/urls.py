@@ -21,6 +21,11 @@ urlpatterns = [
     name = 'dispensary-signup'),
     url(r'^dispensary/$', views.dispensary_home, name = 'dispensary-home'),
 
+    url(r'^dispensary/account/$', views.dispensary_account, name = 'dispensary-account'),
+    url(r'^dispensary/products/$', views.dispensary_products, name = 'dispensary-products'),
+    url(r'^dispensary/orders/$', views.dispensary_orders, name = 'dispensary-orders'),
+    url(r'^dispensary/reports/$', views.dispensary_reports, name = 'dispensary-reports'),
+
     #SignIn/Signout
     url(r'^api/social/', include('rest_framework_social_oauth2.urls')),
     #/convert-token (signin/Sign Up)

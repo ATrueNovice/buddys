@@ -1,23 +1,12 @@
-{% load staticfiles %}
+{% extends 'base_signup.html' %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Home</title>
+{% block heading %}Buddies! - Sign In{% endblock %}
 
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block content %}
+    <form class="POST">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit" class="btn btn-pink pull-right">Log In</button>
+    </form>
 
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
-  </script>
-  </head>
-  <body>
-<form class="POST">
-  {% csrf_token %}
-  {{ form }}
-  <button type="submit">Log In</button>
-</form>
-  </body>
-</html>
+{% endblock %}

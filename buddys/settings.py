@@ -157,4 +157,20 @@ SOCIAL_AUTH_FACEBOOK_SECRET = 'bcc5b2c55648e2ae0abace6c97e539e1'
 # Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from facebook. Email is not sent by default, to get it, you must request the email permission:
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-    'fields': 'id, name, email'}
+    'fields': 'id, name, email'
+    }
+
+#Allows the Auth From a social djangorestframework
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'buddysapp.social_auth_pipeline.create_user_by_type',  # <--- set the path to the function
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
