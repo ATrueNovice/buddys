@@ -1,10 +1,11 @@
 from django.conf.urls import url, include
 from django.contrib import admin
-from buddysapp import views
 from django.contrib.auth import views as auth_views
-
 from django.conf.urls.static import static
 from django.conf import settings
+
+from buddysapp import views, apis
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -22,8 +23,9 @@ urlpatterns = [
     url(r'^dispensary/$', views.dispensary_home, name = 'dispensary-home'),
 
     url(r'^dispensary/account/$', views.dispensary_account, name = 'dispensary-account'),
-    url(r'^dispensary/products/$', views.dispensary_products, name = 'dispensary-products'),
-    url(r'^dispensary/products/add/$', views.dispensary_add_products, name = 'dispensary-add-products'),
+    url(r'^dispensary/product/$', views.dispensary_product, name = 'dispensary-product'),
+    url(r'^dispensary/product/add/$', views.dispensary_add_product, name = 'dispensary-add-product'),
+    url(r'^dispensary/product/edit/(?P<product_id>\d+)/$', views.dispensary_edit_product, name = 'dispensary-edit-product'),
     url(r'^dispensary/orders/$', views.dispensary_orders, name = 'dispensary-orders'),
     url(r'^dispensary/reports/$', views.dispensary_reports, name = 'dispensary-reports'),
 
@@ -31,4 +33,6 @@ urlpatterns = [
     url(r'^api/social/', include('rest_framework_social_oauth2.urls')),
     #/convert-token (signin/Sign Up)
     #/revoke-token (signout)
+
+    url(r'^api/customer/dispensary/$', apis.customer_get_dispensary)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

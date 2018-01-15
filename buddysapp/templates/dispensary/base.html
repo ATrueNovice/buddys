@@ -3,6 +3,13 @@
 {% block title %} Dispensary {% endblock %}
 
 {% block sidebar %}
+
+{% url 'dispensary-order' as dispensary_order_url %}
+{% url 'dispensary-product' as dispensary_product_url %}
+{% url 'dispensary-reports' as dispensary_reports_url %}
+{% url 'dispensary-account' as dispensary_account_url %}
+
+
   <div class="text-center">
     <img class=""="img-circle" src="{{ MEDIA_URL }}{{ request.user.dispensary.logo }}" width="70", height="70" />
 
@@ -16,12 +23,16 @@
   <div class="list-group">
     <span class="text-uppercase">Dashboard</span>
 
-    <a href="{% url 'dispensary-products' %}" class="list-group-item">Products</a>
-    <a href="{% url 'dispensary-orders' %}" class="list-group-item">Orders</a>
-    <a href="{% url 'dispensary-reports' %}" class="list-group-item">Reports</a>
+    <a href="{% url 'dispensary-product' %}"
+     class="list-group-item {% if request.path == dispensary_product_url %} active {% endif %}">Products</a>
+    <a href="{% url 'dispensary-orders' %}"
+    class="list-group-item {% if request.path == dispensary_orders_url %} active {% endif %}">Orders</a>
+    <a href="{% url 'dispensary-reports' %}"
+    class="list-group-item {% if request.path == dispensary_reports_url %} active {% endif %}">Reports</a>
 
     <span class="text-uppercase">Profile</span>
-    <a href="{% url 'dispensary-account' %}" class="list-group-item">Account</a>
+    <a href="{% url 'dispensary-account' %}"
+     class="list-group-item {% if request.path == dispensary_account_url %} active {% endif %}">Account</a>
   </div>
 
   <div class="text-center">

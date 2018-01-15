@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from buddysapp.models import Dispensary, Products
+from buddysapp.models import Dispensary, Product
 
 class UserForm(forms.ModelForm):
     email = forms.CharField(max_length=100, required=True)
@@ -23,7 +23,7 @@ class DispensaryForm(forms.ModelForm):
         model = Dispensary
         fields = ("name", "address", "phone", "logo")
 
-class ProductsForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
-        model = Products
+        model = Product
         exclude = ("dispensary",)

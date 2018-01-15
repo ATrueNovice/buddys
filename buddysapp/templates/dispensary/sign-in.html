@@ -5,7 +5,7 @@
 {% block heading %}Buddies! Delivery Service{% endblock %}
 
 {% block content %}
-    <form class="POST">
+    <form method="POST">
       {% csrf_token %}
       {% bootstrap_form form %}
       <button type="submit" class="btn btn-pink pull-right">Log In</button>

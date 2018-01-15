@@ -8,7 +8,7 @@
       <h4 class="panel-title text-center text-white">Account</h4>
     </div>
     <div class="panel-body">
-      <form class="POST" enctype="multipart/form-data">
+      <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form user_form %}
         {% bootstrap_form dispensary_form %}
