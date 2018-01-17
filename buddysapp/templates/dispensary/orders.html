@@ -30,7 +30,7 @@
               <td>
                 {% for od in order.order_details.all %}
 
-                  {{ od.products.name }} {{ od.product.price }}
+                  {{ od.products.name }} {{ od.products.price }}
                   x {{ od.quantity }} = ${{ od.sub_total }}
                 {% endfor %}
               </td>

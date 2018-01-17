@@ -38,7 +38,7 @@ class Product(models.Model):
     dispensary = models.ForeignKey(Dispensary)
     name = models.CharField(max_length=500)
     short_description = models.CharField(max_length=500)
-    image = models.ImageField(upload_to='product_images/', blank=True)
+    image = models.ImageField(upload_to='product_images/', blank=False)
     CATEGORIES = (
     ('Usage', (
         ('new','New Strains'),

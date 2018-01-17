@@ -34,5 +34,11 @@ urlpatterns = [
     #/convert-token (signin/Sign Up)
     #/revoke-token (signout)
 
-    url(r'^api/customer/dispensary/$', apis.customer_get_dispensary)
+    #API for customers
+    url(r'^api/customer/dispensary/$', apis.customer_get_dispensary),
+    url(r'^api/customer/product/(?P<dispensary_id>\d+)/$', apis.customer_get_product),
+    url(r'^api/customer/order/add/$', apis.customer_add_order),
+    url(r'^api/customer/order/latest/$', apis.customer_get_latest_order),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
