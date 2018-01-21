@@ -42,7 +42,7 @@ def customer_add_order(request):
         2) Dispensary id
         3) address of the users
         4) their order details using:
-        [{"product_id": 1, "quantity": 2}, {"product_id": 2, "quantity": 3}]
+        [{"product_id": 1, "quantity": 2},{"product_id": 2, "quantity": 3}]
 
         return:
             {"status": "success"}
@@ -80,7 +80,6 @@ def customer_add_order(request):
             order_total += Product.objects.get(id = product["product_id"]).price * product["quantity"]
 
             if len(order_details) > 0:
-
                 #Step 1 -Create the orders
 
                 order = Order.objects.create(
@@ -95,11 +94,11 @@ def customer_add_order(request):
                 #Step 2- Create Order details
                 for product in order_details:
                     #checkout OrderDetails all one word
-                    OrderDetails.objects.create(
+                    OrderDetail.objects.create(
                         order = order,
                         product_id = product["product_id"],
                         quantity = product["quantity"],
-                        sub_total = Product.object.get(id = product["product_id"]).price * product["quantity"]
+                        sub_total = Product.objects.get(id = product["product_id"]).price * product["quantity"]
                     )
 
                 return JsonResponse({"status": "success"})

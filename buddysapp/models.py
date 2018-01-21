@@ -89,7 +89,7 @@ class Order(models.Model):
 
     customer = models.ForeignKey(Customer)
     dispensary = models.ForeignKey(Dispensary)
-    driver = models.ForeignKey(Driver)
+    driver = models.ForeignKey(Driver, blank = True, null = True)
     address = models.CharField(max_length=500)
     total = models.IntegerField()
     status = models.IntegerField(choices = STATUS_CHOICES)
@@ -101,7 +101,7 @@ class Order(models.Model):
 
 class OrderDetail(models.Model):
     order = models.ForeignKey(Order, related_name='order_details')
-    products = models.ForeignKey(Product)
+    product = models.ForeignKey(Product)
     quantity = models.IntegerField()
     sub_total = models.IntegerField()
 
